@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 
 import { createDetails } from "./actions/detailActions";
-import { validateEmail } from "./validate/validateHelper";
+import { validateEmail, validateTelephone } from "./validate/validateHelper";
 
 function App() {
   const [email, setEmail] = useState<String>("");
@@ -24,6 +24,7 @@ function App() {
   const [isFormTwoClicked, setIsFormTwoClicked] = useState<Boolean>(false);
   const [isFormThreeClicked, setIsFormThreeClicked] = useState<Boolean>(false);
   const [isEmailValidated, setIsEmailValidated] = useState<Boolean>(true);
+  const [isTelephoneValidated, setIsTelephoneValidated] = useState<Boolean>(true);
 
 
   console.log("email>>>>", email)
@@ -70,10 +71,18 @@ function App() {
       setIsFormThreeClicked(false);
       setIsFormTwoDone(false);
     } else {
-      setIsFormTwoClicked(false);
-      setIsFormOneClicked(false);
-      setIsFormThreeClicked(true);
-
+      console.log("validating tele info?>>>>>", validateTelephone(telephone))
+      if (validateTelephone(telephone)) {
+        setIsFormTwoClicked(false);
+        setIsFormOneClicked(false);
+        setIsFormThreeClicked(true);
+      }
+      else {
+        setIsTelephoneValidated(false);
+        setIsFormTwoClicked(true);
+        setIsFormOneClicked(false);
+        setIsFormThreeClicked(false);
+      }
     }
   }
 
@@ -186,6 +195,11 @@ function App() {
                     {!isFormTwoDone && (
                       <>
                         <span className="mt-4 d-flex justify-content-start error-text">Please fill in comments.</span>
+                      </>
+                    )}
+                    {!isTelephoneValidated && (
+                      <>
+                        <span className="mt-4 d-flex justify-content-start error-text">Telephone requires number. Please put in number.</span>
                       </>
                     )}
                   </div>
