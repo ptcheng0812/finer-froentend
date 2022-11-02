@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
 
-import { createDetails } from "./actions/detailActions"
+import { createDetails } from "./actions/detailActions";
+import { validateEmail } from "./validate/validateHelper";
 
 function App() {
   const [email, setEmail] = useState<String>("");
@@ -22,6 +23,8 @@ function App() {
   const [isFormOneClicked, setIsFormOneClicked] = useState<Boolean>(true);
   const [isFormTwoClicked, setIsFormTwoClicked] = useState<Boolean>(false);
   const [isFormThreeClicked, setIsFormThreeClicked] = useState<Boolean>(false);
+  const [isEmailValidated, setIsEmailValidated] = useState<Boolean>(true);
+
 
   console.log("email>>>>", email)
   console.log("gender>>>>", gender)
@@ -47,14 +50,16 @@ function App() {
 
   const handleNextOne = () => {
     if (email === "" || firstName === "" || surName === "") {
-      setIsFormOneClicked(true);
-      setIsFormThreeClicked(false);
-      setIsFormTwoClicked(false);
       setIsFormOneDone(false);
     } else {
-      setIsFormOneClicked(false);
-      setIsFormThreeClicked(false);
-      setIsFormTwoClicked(true);
+      if (validateEmail(email)) {
+        setIsFormOneClicked(false);
+        setIsFormThreeClicked(false);
+        setIsFormTwoClicked(true);
+      }
+      else {
+        setIsEmailValidated(false);
+      }
     }
   }
 
@@ -128,6 +133,11 @@ function App() {
                     {!isFormOneDone && (
                       <>
                         <span className="mt-4 d-flex justify-content-start error-text">Please fill in the details.</span>
+                      </>
+                    )}
+                    {!isEmailValidated && (
+                      <>
+                        <span className="mt-4 d-flex justify-content-start error-text">Email format is not correct. Invalid Email.</span>
                       </>
                     )}
                   </div>
