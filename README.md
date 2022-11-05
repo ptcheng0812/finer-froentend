@@ -15,12 +15,12 @@
 
 ### How to run the interface (UI)
 
-Step1. Go to finer-frontend directory and open terminal and run
+Step1. Go to client directory and open terminal and run
 ```node
 npm install
 ```
 
-Step2. after depencies installed, run
+Step2. after dependencies installed, run
 ```node
 npm start
 ```
