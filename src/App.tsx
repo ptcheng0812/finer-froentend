@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 
 import { createDetails } from "./actions/detailActions";
-import { validateEmail, validateTelephone } from "./validate/validateHelper";
+import { validateEmail, validateTelephone, validateDateOfBirth } from "./validate/validateHelper";
 
 function App() {
   const [email, setEmail] = useState<String>("");
@@ -25,6 +25,7 @@ function App() {
   const [isFormThreeClicked, setIsFormThreeClicked] = useState<Boolean>(false);
   const [isEmailValidated, setIsEmailValidated] = useState<Boolean>(true);
   const [isTelephoneValidated, setIsTelephoneValidated] = useState<Boolean>(true);
+  const [isDateOfBirthValidated, setIsDateOfBirthValidated] = useState<Boolean>(true);
 
 
   console.log("email>>>>", email)
@@ -73,9 +74,16 @@ function App() {
     } else {
       console.log("validating tele info?>>>>>", validateTelephone(telephone))
       if (validateTelephone(telephone)) {
-        setIsFormTwoClicked(false);
-        setIsFormOneClicked(false);
-        setIsFormThreeClicked(true);
+        if (validateDateOfBirth(dob1, dob2, dob3)) {
+          setIsFormTwoClicked(false);
+          setIsFormOneClicked(false);
+          setIsFormThreeClicked(true);
+        } else {
+          setIsDateOfBirthValidated(false);
+          setIsFormTwoClicked(true);
+          setIsFormOneClicked(false);
+          setIsFormThreeClicked(false);
+        }
       }
       else {
         setIsTelephoneValidated(false);
@@ -200,6 +208,11 @@ function App() {
                     {!isTelephoneValidated && (
                       <>
                         <span className="mt-4 d-flex justify-content-start error-text">Telephone requires number. Please put in number.</span>
+                      </>
+                    )}
+                    {!isDateOfBirthValidated && (
+                      <>
+                        <span className="mt-4 d-flex justify-content-start error-text">Date of Birth is invalid.</span>
                       </>
                     )}
                   </div>
