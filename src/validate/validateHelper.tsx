@@ -1,5 +1,5 @@
 export function validateEmail(email: any) {
-  return String(email)
+  return email.toString()
     .toLowerCase()
     .match(
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -27,7 +27,7 @@ const digitsCount = (n: number) => {
   return count;
 }
 
-export function validateDateOfBirth(dob1: String, dob2: String, dob3: String) {
+export function validateDateOfBirth(dob1: string, dob2: string, dob3: string) {
   var subCheckDate = dob1 + "/" + dob2 + "/" + dob3;
   var pattern = /^((0[1-9]|[12][0-9]|3[01])(\/)(0[13578]|1[02]))|((0[1-9]|[12][0-9])(\/)(02))|((0[1-9]|[12][0-9]|3[0])(\/)(0[469]|11))(\/)\d{4}$/;
 

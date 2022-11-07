@@ -5,15 +5,15 @@ import { createDetails } from "./actions/detailActions";
 import { validateEmail, validateTelephone, validateDateOfBirth } from "./validate/validateHelper";
 
 function App() {
-  const [email, setEmail] = useState<String>("");
-  const [firstName, setFirstName] = useState<String>("");
-  const [surName, setSurName] = useState<String>("");
-  const [telephone, setTelephone] = useState<String>("");
-  const [comment, setComment] = useState<String>("");
-  const [gender, setGender] = useState<String>("");
-  const [dob1, setDOB1] = useState<String>("");
-  const [dob2, setDOB2] = useState<String>("");
-  const [dob3, setDOB3] = useState<String>("");
+  const [email, setEmail] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [surName, setSurName] = useState<string>("");
+  const [telephone, setTelephone] = useState<string>("");
+  const [comment, setComment] = useState<string>("");
+  const [gender, setGender] = useState<string>("");
+  const [dob1, setDOB1] = useState<string>("");
+  const [dob2, setDOB2] = useState<string>("");
+  const [dob3, setDOB3] = useState<string>("");
 
   const [isFormDone, setIsFormDone] = useState<Boolean>(true);
   const [isFormOneDone, setIsFormOneDone] = useState<Boolean>(true);
@@ -136,17 +136,17 @@ function App() {
                 <div className="d-flex justify-content-start px-4 py-2">
                   <div className="dropdown-item d-flex flex-column first-name-input-container">
                     <label className="form-label d-flex justify-content-start">First Name</label>
-                    <input type="name" className="form-control form-text" id="exampleInputName" aria-describedby="emailHelp" onChange={(e) => { setFirstName(e.target.value) }} />
+                    <input type="name" className="form-control form-text" id="exampleInputName" aria-describedby="emailHelp" onChange={(e) => { setFirstName(e.target.value) }} placeholder={state?.firstName ? state?.firstName : ""} />
                   </div>
                   <div className="dropdown-item d-flex flex-column sur-name-input-container">
                     <label className="form-label d-flex justify-content-start" id="surname">Surname</label>
-                    <input type="surName" className="form-control form-text" id="exampleInputDOB" aria-describedby="emailHelp" onChange={(e) => { setSurName(e.target.value) }} />
+                    <input type="surName" className="form-control form-text" id="exampleInputDOB" aria-describedby="emailHelp" onChange={(e) => { setSurName(e.target.value) }} placeholder={state?.surName ? state?.surName : ""} />
                   </div>
                 </div>
                 <div className="d-flex justify-content-start p-4">
                   <div className="dropdown-item d-flex flex-column">
                     <label className="form-label d-flex justify-content-start">Email Address:</label>
-                    <input type="email" className="form-control form-text" id="exampleInputEmail" aria-describedby="emailHelp" onChange={(e) => { setEmail(e.target.value) }} />
+                    <input type="email" className="form-control form-text" id="exampleInputEmail" aria-describedby="emailHelp" onChange={(e) => { setEmail(e.target.value) }} placeholder={state?.email ? state?.email : ""} />
                     {!isFormOneDone && (
                       <>
                         <span className="mt-4 d-flex justify-content-start error-text">Please fill in the details.</span>
@@ -180,11 +180,11 @@ function App() {
                 <div className="d-flex justify-content-start px-4 py-2">
                   <div className="dropdown-item d-flex flex-column telephone-input-container">
                     <label className="form-label d-flex justify-content-start">Telephone number</label>
-                    <input type="telephone" className="form-control form-text" id="exampleInputTelephone" aria-describedby="emailHelp" onChange={(e) => { setTelephone(e.target.value) }} />
+                    <input type="telephone" className="form-control form-text" id="exampleInputTelephone" aria-describedby="emailHelp" onChange={(e) => { setTelephone(e.target.value) }} placeholder={state?.telephone ? state?.telephone : ""} />
                   </div>
                   <div className="dropdown-item d-flex flex-column gender-input-container">
                     <label className="form-label d-flex justify-content-start">Gender</label>
-                    <select className="form-select" aria-label="Default select example" onChange={(e: any) => { setGender(e.target.value) }}>
+                    <select className="form-select" aria-label="Default select example" onChange={(e: any) => { setGender(e.target.value) }} >
                       <option selected>Select Gender</option>
                       <option value="M">M</option>
                       <option value="F">F</option>
@@ -196,9 +196,9 @@ function App() {
                   <div className="dropdown-item d-flex flex-column">
                     <label className="form-label d-flex justify-content-start">Date of Birth</label>
                     <div className="d-flex justify-content-start">
-                      <input type="dateOfBirth" className="form-control form-text-dob" id="exampleInputDOB1" aria-describedby="emailHelp" onChange={(e) => { setDOB1(e.target.value) }} />
-                      <input type="dateOfBirth" className="form-control form-text-dob" id="exampleInputDOB2" aria-describedby="emailHelp" onChange={(e) => { setDOB2(e.target.value) }} />
-                      <input type="dateOfBirth" className="form-control form-text-dob" id="exampleInputDOB3" aria-describedby="emailHelp" onChange={(e) => { setDOB3(e.target.value) }} />
+                      <input type="dateOfBirth" className="form-control form-text-dob" id="exampleInputDOB1" aria-describedby="emailHelp" onChange={(e) => { setDOB1(e.target.value) }} placeholder={state?.dateOfBirth ? dob1 : ""} />
+                      <input type="dateOfBirth" className="form-control form-text-dob" id="exampleInputDOB2" aria-describedby="emailHelp" onChange={(e) => { setDOB2(e.target.value) }} placeholder={state?.dateOfBirth ? dob2 : ""} />
+                      <input type="dateOfBirth" className="form-control form-text-dob" id="exampleInputDOB3" aria-describedby="emailHelp" onChange={(e) => { setDOB3(e.target.value) }} placeholder={state?.dateOfBirth ? dob3 : ""} />
                     </div>
                     {!isFormTwoDone && (
                       <>
@@ -237,7 +237,7 @@ function App() {
                 <div className="d-flex justify-content-start px-4 py-2">
                   <div className="dropdown-item d-flex flex-column">
                     <label className="form-label d-flex justify-content-start">Comments</label>
-                    <textarea id="textarea" name="textarea" onChange={(e) => { setComment(e.target.value) }}></textarea>
+                    <textarea id="textarea" name="textarea" onChange={(e) => { setComment(e.target.value) }} placeholder={state?.comment ? state?.comment : ""}></textarea>
                     {!isFormDone && (
                       <>
                         <span className="mt-4 d-flex justify-content-start error-text">Please fill in the missing blanks to submit the form</span>
